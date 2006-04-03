@@ -3,7 +3,7 @@
 # svndiff -- svn diff with vimdiff.
 #
 # Written by Erik C. Thauvin (erik@thauvin.net)
-# Februrary 14, 2006
+# April 3, 2006
 #
 # Copyright (C) 2006 Erik C. Thauvin. All rights reserved.
 #
@@ -24,7 +24,7 @@ then
     echo "Usage: $PROGNAME <file>"
     exit 2
 else
-    TEMP=/tmp/$1.tmp.$$
+    TEMP=/tmp/tmp.$$.$1
     svn cat $1 > $TEMP
     vimdiff $TEMP $1
     rm -f $TEMP
