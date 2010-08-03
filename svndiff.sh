@@ -16,16 +16,25 @@
 # permission of the author.
 #
 # $Id$
+#
+# Modified by felix021 (felix021@gmail.com) 
+# Aug 3, 2010
 
 PROGNAME=`basename $0`
 
-if [ $# != 1 ]
-then
+if [ $# -lt 1 ]; then
     echo "Usage: $PROGNAME <file>"
-    exit 2
-else
-    TEMP=/tmp/tmp.$$.`basename $1`
-    svn cat $1 > $TEMP
-    vimdiff $TEMP $1
-    rm -f $TEMP
+    exit;
 fi
+
+filename=$1
+pid=$$
+TEMP=/tmp/tmp.$pid.$filename
+pv=
+
+if [ $# -gt 3 -a $2 = "-r" ]; then
+    pv="-r $3"
+fi
+svn cat $filename $pv > $TEMP
+vimdiff $TEMP $filename
+rm -f $TEMP
