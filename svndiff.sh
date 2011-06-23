@@ -41,7 +41,7 @@ pv=
 
 trap 'rm -f $TEMP' 0 1 2 15
 
-if [ $# -eq 3 -a $2 = "-r" ]; then
+if [ $# -eq 3 ] && [ $2 = "-r" ]; then
     pv="-r $3"
 fi
 svn cat $filename $pv > $TEMP
